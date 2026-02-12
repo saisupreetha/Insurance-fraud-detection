@@ -136,11 +136,14 @@ def render_home_page():
     st.markdown(
     """
     <style>
-    /* Container safety: ensure centered layout */
-    .home-cta-wrapper { display:flex; justify-content:center; }
+    /* Center wrapper */
+    .home-cta-wrapper {
+        display: flex;
+        justify-content: center;
+    }
 
-    /* Main CTA button styling */
-    button[key="home_get_started"], button[kind="primary"][key="home_get_started"] {
+    /* Target Streamlit button properly */
+    div[data-testid="stButton"] > button {
         background: linear-gradient(90deg, #0077DA 0%, #00AEEF 100%) !important;
         color: #ffffff !important;
         font-size: 20px !important;
@@ -156,20 +159,19 @@ def render_home_page():
         max-width: 68% !important;
     }
 
-    /* Hover and focus states */
-    button[key="home_get_started"]:hover {
+    div[data-testid="stButton"] > button:hover {
         transform: translateY(-6px) !important;
         box-shadow: 0 28px 60px rgba(0,120,220,0.24) !important;
     }
-    button[key="home_get_started"]:focus {
+
+    div[data-testid="stButton"] > button:focus {
         outline: 3px solid rgba(0,170,255,0.18) !important;
     }
 
-    /* Make sure inner streamlit layout doesn't squash the button */
-    .stButton>button { padding-left: 0.6rem !important; padding-right: 0.6rem !important; }
     </style>
     """,
-    unsafe_allow_html=True)
+    unsafe_allow_html=True
+)
 
     # Centered Streamlit CTA button (calls go_to_input)
     st.markdown('<div class="home-cta-wrapper"></div>', unsafe_allow_html=True)
