@@ -1,36 +1,49 @@
-# Insurance Fraud Detection System 🕵️‍♂️🚫
+# Insurance Fraud Detector
 
-## Overview
-A Generative AI-powered system designed to detect and explain insurance fraud patterns. This project includes a machine learning pipeline for fraud classification, an interactive analyst dashboard, and an automated reporting system.
+Lightweight Streamlit app that uses machine learning and heuristic rules
+to produce categorical fraud risk assessments and professional PDF reports
+for insurance claims.
 
-## Key Features
-- **Fraud Detection Engine**: Utilizes XGBoost and Random Forest to classify claims.
-- **AI Risk Explanation**: Generates natural language explanations for high-risk claims.
-- **Analyst Dashboard**: A modern UI for reviewing claims and insights.
-- **Chatbot Assistant**: A fraud analyst copilot for ad-hoc queries.
-- **Auto-Reporting**: Generates PDF risk summary reports.
+## Features
+- Fast claim assessment using a pre-trained XGBoost model (default)
+- Heuristic risk drivers combined with model output for robust decisions
+- Inline AI assistant to answer basic questions about the analysis
+- Audit-ready PDF report generation (in `reports/`)
 
-## Project Structure
+## Quick Start
+
+1. Create and activate a Python virtual environment.
+
+Windows (PowerShell):
+
+```powershell
+python -m venv .venv
+& .\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
 ```
-├── data/               # Dataset storage
-├── src/                # Source code
-│   ├── model_train.py  # ML Training Pipeline
-│   ├── app.py          # Dashboard Application
-│   └── utils.py        # Helper functions
-├── requirements.txt    # Project dependencies
-└── README.md           # Project documentation
+
+2. Run the app:
+
+```bash
+streamlit run src/app.py
 ```
 
-## Setup
-1. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-2. Run the training pipeline:
-   ```bash
-   python src/model_train.py
-   ```
-3. Launch the dashboard:
-   ```bash
-   streamlit run src/app.py
-   ```
+3. Open the URL printed by Streamlit (usually http://localhost:8501).
+
+## Generating a PDF report
+On the Result page click `Generate & Download PDF` to create a report
+which will be saved under the `reports/` folder.
+
+## Models
+Pre-trained model files and encoders are expected in the `models/` folder:
+- `xgboost.pkl`, `random_forest.pkl`, `logistic_regression.pkl`, `label_encoders.pkl`
+
+## Notes
+- If the app fails to start, ensure your virtual environment is active and
+	dependencies installed via `requirements.txt`.
+- Streamlit API differences between versions may affect `st.experimental_*`
+	functions; the app uses `st.session_state` and `st.stop()` for navigation.
+
+## Contact
+For issues, open an issue in the project or contact the maintainer.
+
